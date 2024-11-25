@@ -1,0 +1,19 @@
+.custom-shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape svg {
+  position: relative;
+  display: block;
+  width: calc(280% + 1.3px);
+  height: 445px;
+}
+
+.custom-shape .shape-fill {
+  fill: #fff
+}

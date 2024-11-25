@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poetsen+One&display=swap')
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a{
+  text-decoration: none  !important;
+}
+
+.body {
+  background: red;
+  font-family: "Nunito Sans", sans-serif;
+  padding:0;
+  margin: 0;
+}
+
+.records {
+  border-radius: 20px 50%;
+}
+
+.active-tab {
+  background-color: black;
+  color: white;
+  font-size: 1.5rem;
+}
+
+
+/* Add this CSS to your global styles or a Tailwind CSS file */
+.tab-card {
+  @apply p-4 bg-red-500 text-white rounded-lg shadow-md cursor-pointer transition duration-200 transform;
+}
+
+.tab-card:hover {
+  @apply bg-red-600;
+}
+
+.tab-card:focus {
+  @apply outline-none;
+}
+
+.active-tabs {
+  @apply bg-white text-red-600 font-bold shadow-xl;
+}
