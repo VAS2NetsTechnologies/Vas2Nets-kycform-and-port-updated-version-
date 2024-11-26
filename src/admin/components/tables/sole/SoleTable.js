@@ -71,18 +71,8 @@ const SoleTable = () => {
     {
       name: "No_of_employee",
       selector: (row) => row?.number_of_employee,
-      width: "250px",
+      width: "250px"
     },
-    // {
-    //   name: "Country of Registration",
-    //   selector: (row) => row?.registrationCountry,
-    //   width: "250px",
-    // },
-    // {
-    //   name: "date_of_incorporation",
-    //   selector: (row) => row?.dateIncorporation,
-    //   width: "250px",
-    // },
     {
       name: "Actions",
       cell: (row) => (
