@@ -17,7 +17,7 @@ const Modal = ({ closeModal }) => {
         exit={{ opacity: 0, y: -100 }}
       >
         <button
-          className="absolute top-2 bg-white border-none text-lg right-2 text-red-600 cursor-pointer hover:text-red-800"
+          className="absolute top-2 bg-white border-none text-xl right-2 text-red-600 cursor-pointer hover:text-red-800"
           onClick={closeModal}
         >
           <FaTimes />
@@ -28,13 +28,13 @@ const Modal = ({ closeModal }) => {
         <div className="flex flex-col space-y-4">
           <Link
             to="/kycform/llc"
-            className="bg-red-600 text-white py-2 text-center tracking-wider px-4 rounded-lg shadow-md hover:bg-red-700 transition duration-300 font-poet md:py-4"
+            className="bg-red-600 text-white py-2 text-center tracking-wider px-4 rounded-lg shadow-md hover:bg-red-700 transition duration-300 font-poet md:py-4 text-xl"
           >
             Limited Liability Company(LLC)
           </Link>
           <Link
             to="/kycform/sole-proprietorship"
-            className="bg-red-600 text-white py-2 text-center px-4 rounded-lg tracking-wider shadow-md hover:bg-red-700 transition duration-300 font-poet md:py-4"
+            className="bg-red-600 text-white py-2 text-center px-4 rounded-lg tracking-wider shadow-md hover:bg-red-700 transition duration-300 font-poet md:py-4 text-xl"
           >
             Sole Proprietorship
           </Link>
