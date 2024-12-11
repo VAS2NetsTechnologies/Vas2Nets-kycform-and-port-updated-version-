@@ -3,7 +3,7 @@ import { baseURL } from "../../util/http";
 
 const DownloadButton = ({ doc }) => {
   const downloadURL = `${baseURL}/${doc.file_path}`;
-console.log(downloadURL);
+// console.log(downloadURL);
 
   return (
     <button className="bg-red-500 rounded-xl">

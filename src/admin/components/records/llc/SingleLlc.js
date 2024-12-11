@@ -7,7 +7,6 @@ import { usesingleLlcContext } from "../../../context/customSllc";
 const SingleLlc = () => {
   const { id } = useParams();
   const {
-    setQuestionnaires,
     modifyQues,
     setBeneficiaries,
     setBoardMemberDetails,
@@ -17,25 +16,23 @@ const SingleLlc = () => {
 
   useEffect(() => {
     fetchSingleUserRecord(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const fetchSingleUserRecord = async (id) => {
-
     setLoading(true);
     try {
       const { data } = await customFetch.post(
         `v2nclientDetailsResponse?search=${id}`
       );
 
-      // console.log(data?.data?.message);
+      // console.log(data?.data?.message[0]);
 
       const rawQuestionnaires = data?.data?.message[0]?.questionnaires || [];
-      const rawBeneficiaries = data?.data?.message[0]?.beneficiary_details || [];
+      const rawBeneficiaries =
+        data?.data?.message[0]?.beneficiary_details || [];
       const rawBoard = data?.data?.message[0]?.board_member_details || [];
       const rawSignatories = data?.data?.message[0]?.signatory_details || {};
 
-      setQuestionnaires(rawQuestionnaires);
       modifyQues(rawQuestionnaires);
       setBeneficiaries(rawBeneficiaries);
       setBoardMemberDetails(rawBoard);

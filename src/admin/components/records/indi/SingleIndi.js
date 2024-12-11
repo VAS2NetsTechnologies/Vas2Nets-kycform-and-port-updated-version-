@@ -21,7 +21,7 @@ const SingleIndi = () => {
         `getv2nindividualRecords?search=${id}`
       );
 
-      //   console.log(data);
+        // console.log(data);
 
       //   console.log(data?.data?.message[0]);
       setQuestionnaires(data?.data?.message[0]?.pepStatus);

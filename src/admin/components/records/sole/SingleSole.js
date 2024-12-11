@@ -6,11 +6,8 @@ import TabComp from "../../tabs/TabComp";
 
 const SingleSole = () => {
   const { id } = useParams();
-  const {
-    setQuestionnaires,
-    setSocials,
-    setLoading,
-  } = useSingleRecordContext();
+  const { setQuestionnaires, setSocials, setLoading } =
+    useSingleRecordContext();
 
   useEffect(() => {
     fetchSingleUserRecord(id);
@@ -24,7 +21,7 @@ const SingleSole = () => {
         `getv2nbusinessRecords?search=${id}`
       );
 
-      console.log(data?.data?.message[0]);
+      // console.log(data?.data?.message[0]);
       setQuestionnaires(data?.data?.message[0]?.pepStatus);
       setSocials(data?.data?.message[0]?.socialMedias);
       setLoading(false);

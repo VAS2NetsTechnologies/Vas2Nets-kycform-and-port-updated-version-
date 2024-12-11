@@ -3,7 +3,7 @@ import { useSingleRecordContext } from "../../../context/singleRecordContext";
 
 const Questionnaires = () => {
   const { questionnaires, loading } = useSingleRecordContext();
-console.log(questionnaires);
+// console.log(questionnaires);
 
   const renderTable = () => {
     return (

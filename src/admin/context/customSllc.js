@@ -14,14 +14,17 @@ export const SingleLlcRecordProvider = ({ children }) => {
   };
 
   const modifyQues = (ques) => {
-    const formattedQues = Object.values(ques).map((q) => ({
-      question: q.question,
-      answer: q.answer,
-      details: q.details || "",
-    }));
+    const formattedQues = Object.entries(ques)
+      .filter(([key, value]) => value !== null && key.includes("question_"))
+      .map(([key, q]) => ({
+        question: q.question,
+        answer: q.answer,
+        details: q.details || "",
+        disabled: q.disabled || false,
+      }));
+
     setLlcQuestionnaires(formattedQues);
   };
-
   const modifySig = (sig) => {
     setSignatories(sig);
   };
