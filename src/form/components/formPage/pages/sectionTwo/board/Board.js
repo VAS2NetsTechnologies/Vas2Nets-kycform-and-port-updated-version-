@@ -17,7 +17,6 @@ const Board = () => {
   }, [board]);
 
   const handleInputChange = (index, e) => {
-    console.log("Index:", index);
     const updatedBoards = [...board];
     updatedBoards[index][e.target.name] = e.target.value;
     setBoard(updatedBoards);
@@ -84,28 +83,28 @@ const Board = () => {
                 index={index}
                 name="name"
                 value={bd.name || ""}
-                required={index !== 0}
+                required={true}
                 handleInputChange={handleInputChange}
               />
               <TdInput
                 index={index}
                 name="position"
                 value={bd.position || ""}
-                required={index !== 0}
+                required={true}
                 handleInputChange={handleInputChange}
               />
               <TdInput
                 index={index}
                 name="nationality"
                 value={bd.nationality || ""}
-                required={index !== 0}
+                required={true}
                 handleInputChange={handleInputChange}
               />
               <TdInput
                 index={index}
                 name="residence"
                 value={bd.residence || ""}
-                required={index !== 0}
+                required={true}
                 handleInputChange={handleInputChange}
               />
             </tr>
@@ -125,7 +124,7 @@ const TdInput = ({ index, name, value, required, handleInputChange }) => (
       value={value}
       onChange={(e) => handleInputChange(index, e)}
       className="border border-black outline-none w-[330px] font-bold py-2 px-3 rounded-md"
-      required={required}
+      required={true}
     />
   </td>
 );

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Modal = ({ closeModal }) => {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center px-10">
+    <div className="fixed inset-0 z-50 flex items-center justify-center px-10 w-screen">
       <div
         onClick={closeModal}
         className="absolute inset-0 bg-black bg-opacity-50 cursor-pointer"

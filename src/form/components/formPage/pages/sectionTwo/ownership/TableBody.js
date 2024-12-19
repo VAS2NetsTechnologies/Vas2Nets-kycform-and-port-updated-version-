@@ -30,6 +30,7 @@ const TableBody = ({ owners, handleInputChange, removeRow }) => {
             name="shareHolding"
             value={owner.shareHolding}
             handleInputChange={handleInputChange}
+            type="number"
           />
           <TdInput
             index={index}

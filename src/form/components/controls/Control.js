@@ -6,13 +6,12 @@ const Controls = ({ back, loading }) => {
 
   return (
     <div className="buttons flex items-center justify-between pt-8">
-     
-      <button
+      {/* <button
         onClick={() => handleStep(back)}
         className="text-white capitalize bg-black font-semibold py-2 px-6 rounded cursor-pointer transition duration-300 ease-in-out hover:bg-red-900"
       >
         back
-      </button>
+      </button> */}
 
       <button
         type="submit"
@@ -20,7 +19,6 @@ const Controls = ({ back, loading }) => {
         className="text-white capitalize bg-red-600 font-semibold py-2 px-6 rounded cursor-pointer transition duration-300 ease-in-out hover:bg-red-600 hover:transition-all flex items-center justify-center"
       >
         {loading ? (
-         
           <div className="flex items-center space-x-2">
             <svg
               className="animate-spin h-5 w-5 text-white"
@@ -42,7 +40,7 @@ const Controls = ({ back, loading }) => {
                 d="M4 12a8 8 0 018-8v8H4z"
               ></path>
             </svg>
-            <span>Processing...</span>
+            <span>Submitting...</span>
           </div>
         ) : (
           "Next"
