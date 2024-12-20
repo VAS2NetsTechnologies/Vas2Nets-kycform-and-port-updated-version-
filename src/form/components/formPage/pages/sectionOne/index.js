@@ -5,6 +5,8 @@ import { useStepContext } from "../../../../context/stepContext/stepContext";
 import { customFetch } from "../../../../utils/http";
 import { useFormCtx } from "../../../../context/formContext/formContext";
 import { toast } from "react-toastify";
+import ConfirmationModal from "../../../../../components/ConfirmationModal";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SectionOne = () => {
   useEffect(() => {
@@ -36,8 +38,16 @@ const SectionOne = () => {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmitHere = async (e) => {
-    e.preventDefault();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set("page", "coporate_info");
+    navigate({ search: queryParams.toString() }, { replace: true });
+  }, []);
+
+  const handleSubmitHere = async () => {
     setLoading(true);
     try {
       // formData instance for companyInfo
@@ -64,7 +74,7 @@ const SectionOne = () => {
 
       const { data } = await customFetch.post("v2nClientInfo", formDataCO);
 
-      if (data.message) {
+      if (data.status !== "successful" && data.status !== "success") {
         // Display message in a beautiful box
         toast.info(data.message, {
           position: "top-center",
@@ -73,7 +83,7 @@ const SectionOne = () => {
           draggable: true,
           onClose: () => setShowModal(false),
         });
-      } else if (data.data) {
+      } else {
         // Display success toast
         toast.success("Successfully submitted!", {
           position: "top-center",
@@ -98,9 +108,19 @@ const SectionOne = () => {
     }
   };
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
+  const handleConfirmSubmit = () => {
+    setShowModal(false);
+    handleSubmitHere();
+  };
+
   return (
     <>
-      <form onSubmit={handleSubmitHere}>
+      <form onSubmit={handleFormSubmit}>
         <CoporateInfo />
 
         <div className="submit-btn flex justify-end py-8">
@@ -112,6 +132,11 @@ const SectionOne = () => {
           </button>
         </div>
       </form>
+      <ConfirmationModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onConfirm={handleConfirmSubmit}
+      />
       {/* footer */}
       <Footer />
     </>

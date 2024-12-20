@@ -6,6 +6,7 @@ import { customFetch } from "../../../../utils/http";
 import { useStepContext } from "../../../../context/stepContext/stepContext";
 import Heading from "../../../utils/Heading";
 import Yes from "./Yes";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SectionThree = () => {
   const { handleStep } = useStepContext();
@@ -14,6 +15,15 @@ const SectionThree = () => {
   const [errorModal, setErrorModal] = useState(false);
 
   const { modifiedQuestionnaires } = state;
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set("page", "questionnaires");
+    navigate({ search: queryParams.toString() }, { replace: true });
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -80,7 +90,13 @@ const SectionThree = () => {
 
       <form onSubmit={handleSubmit}>
         <Yes />
-        <div className="submit-btn flex justify-end py-8">
+        <div className="submit-btn flex justify-between py-8">
+          <button
+            onClick={() => handleStep(2)}
+            className="text-white capitalize bg-black font-semibold py-2 px-6 rounded cursor-pointer transition duration-300 ease-in-out hover:bg-red-900"
+          >
+            back
+          </button>
           <button
             type="submit"
             className="bg-red-600 text-white px-6 py-2 rounded-md cursor-pointer font-bold capitalize"
@@ -90,9 +106,7 @@ const SectionThree = () => {
         </div>
       </form>
       {errorModal && (
-        <div className="error-modal">
-          {/* Error modal content */}
-        </div>
+        <div className="error-modal">{/* Error modal content */}</div>
       )}
     </section>
   );

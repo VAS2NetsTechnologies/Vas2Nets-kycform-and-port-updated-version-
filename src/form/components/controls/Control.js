@@ -6,12 +6,12 @@ const Controls = ({ back, loading }) => {
 
   return (
     <div className="buttons flex items-center justify-between pt-8">
-      {/* <button
+      <button
         onClick={() => handleStep(back)}
         className="text-white capitalize bg-black font-semibold py-2 px-6 rounded cursor-pointer transition duration-300 ease-in-out hover:bg-red-900"
       >
         back
-      </button> */}
+      </button>
 
       <button
         type="submit"

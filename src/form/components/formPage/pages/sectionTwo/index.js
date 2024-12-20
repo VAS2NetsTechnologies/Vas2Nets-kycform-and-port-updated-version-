@@ -7,11 +7,21 @@ import Board from "./board/Board";
 import { useFormCtx } from "../../../../context/formContext/formContext";
 import { customFetch } from "../../../../utils/http";
 import { toast } from "react-toastify";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SectionTwo = () => {
   const { handleStep } = useStepContext();
   const { state } = useFormCtx();
   const [loading, setLoading] = useState(false);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set("page", "board_shareholders");
+    navigate({ search: queryParams.toString() }, { replace: true });
+  }, []);
 
   const { boards, shareHolders } = state;
 
@@ -34,7 +44,7 @@ const SectionTwo = () => {
         "getv2nClientsBoardInfo",
         formDataBS
       );
-      if (data?.status === "Successful") {
+      if (data?.status === "successful") {
         toast.success("Successfully submitted!", {
           position: "top-center",
           autoClose: 4000,

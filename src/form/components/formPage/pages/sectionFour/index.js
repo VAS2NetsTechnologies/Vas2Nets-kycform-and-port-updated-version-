@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoDocumentSharp } from "react-icons/io5";
 import Heading from "../../../utils/Heading";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useFormCtx } from "../../../../context/formContext/formContext";
 import Controls from "../../../controls/Control";
 import Documents from "./Documents";
@@ -14,10 +14,17 @@ import Modal from "./Modal";
 const SectionFour = () => {
   const [loading, setLoading] = useState(false);
   const [errorModal, setErrorModal] = useState(false);
+  const { state, coporateInfo, hasFileErrors } = useFormCtx();
 
   const navigate = useNavigate();
 
-  const { state, coporateInfo, hasFileErrors } = useFormCtx();
+  const location = useLocation();
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set("page", "signatory");
+    navigate({ search: queryParams.toString() }, { replace: true });
+  }, []);
 
   const {
     authorizedSignatory1,
