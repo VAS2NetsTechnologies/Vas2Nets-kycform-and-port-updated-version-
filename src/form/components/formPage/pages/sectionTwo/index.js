@@ -14,15 +14,6 @@ const SectionTwo = () => {
   const { state } = useFormCtx();
   const [loading, setLoading] = useState(false);
 
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    queryParams.set("page", "board_shareholders");
-    navigate({ search: queryParams.toString() }, { replace: true });
-  }, []);
-
   const { boards, shareHolders } = state;
 
   useEffect(() => {

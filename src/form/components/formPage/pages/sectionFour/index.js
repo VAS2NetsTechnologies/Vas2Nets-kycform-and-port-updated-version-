@@ -18,13 +18,7 @@ const SectionFour = () => {
 
   const navigate = useNavigate();
 
-  const location = useLocation();
-
-  useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    queryParams.set("page", "signatory");
-    navigate({ search: queryParams.toString() }, { replace: true });
-  }, []);
+  
 
   const {
     authorizedSignatory1,

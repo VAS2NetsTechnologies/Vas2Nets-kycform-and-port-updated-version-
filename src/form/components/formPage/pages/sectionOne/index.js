@@ -38,15 +38,6 @@ const SectionOne = () => {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    queryParams.set("page", "coporate_info");
-    navigate({ search: queryParams.toString() }, { replace: true });
-  }, []);
-
   const handleSubmitHere = async () => {
     setLoading(true);
     try {
@@ -70,21 +61,12 @@ const SectionOne = () => {
       formDataCO.append("companyInfo[0][industryReg]", industryReg);
       formDataCO.append("companyInfo[0][noOfEmployees]", noOfEmployees);
       formDataCO.append("companyInfo[0][taxIDNo]", taxIDNo);
-      // end of this instance for companyInfo
 
       const { data } = await customFetch.post("v2nClientInfo", formDataCO);
 
-      if (data.status !== "successful" && data.status !== "success") {
-        // Display message in a beautiful box
-        toast.info(data.message, {
-          position: "top-center",
-          autoClose: false,
-          closeOnClick: true,
-          draggable: true,
-          onClose: () => setShowModal(false),
-        });
-      } else {
-        // Display success toast
+      const normalizedStatus = data.status?.trim().toLowerCase();
+
+      if (normalizedStatus === "success") {
         toast.success("Successfully submitted!", {
           position: "top-center",
           autoClose: 5000,
@@ -95,6 +77,18 @@ const SectionOne = () => {
         setTimeout(() => {
           handleStep(2);
         }, 5000);
+      } else if (normalizedStatus === "sucessfully") {
+        toast.success("Successfully updated!", {
+          position: "top-center",
+          autoClose: 5000,
+          closeOnClick: true,
+          draggable: true,
+        });
+        setTimeout(() => {
+          handleStep(2);
+        }, 4000);
+      } else {
+        throw new Error("Submission failed");
       }
     } catch (error) {
       toast.error("Something went wrong. Please try again.", {

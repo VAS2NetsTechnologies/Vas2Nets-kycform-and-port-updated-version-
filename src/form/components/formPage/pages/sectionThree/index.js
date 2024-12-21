@@ -7,6 +7,7 @@ import { useStepContext } from "../../../../context/stepContext/stepContext";
 import Heading from "../../../utils/Heading";
 import Yes from "./Yes";
 import { useLocation, useNavigate } from "react-router-dom";
+import { modifyQuestionnaires } from "../../../../utils/utilFn";
 
 const SectionThree = () => {
   const { handleStep } = useStepContext();
@@ -14,16 +15,10 @@ const SectionThree = () => {
   const [loading, setLoading] = useState(false);
   const [errorModal, setErrorModal] = useState(false);
 
-  const { modifiedQuestionnaires } = state;
+  // const { modifiedQuestionnaires } = state;
+  const { questionnaires } = state;
 
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    queryParams.set("page", "questionnaires");
-    navigate({ search: queryParams.toString() }, { replace: true });
-  }, []);
+  const modifiedQuestionnaires = modifyQuestionnaires(questionnaires);
 
   useEffect(() => {
     window.scrollTo(0, 0);
